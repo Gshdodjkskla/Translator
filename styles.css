@@ -12,6 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .container {
@@ -704,9 +705,9 @@ footer {
     }
     
     .header-buttons {
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 4px;
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        align-items: stretch; /* Make buttons full width */
+        gap: 5px;
     }
     
     .copy-button, .retranslate-button, .edit-button {
