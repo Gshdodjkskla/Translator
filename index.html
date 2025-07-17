@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Telugu to English WhatsApp Translator</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+      eruda.init();
+    </script>
   </head>
   <body>
     <div class="container">
@@ -21,7 +25,9 @@
           <div class="method-tabs">
             <button id="voiceTab" class="tab-button active">🎤 Voice</button>
             <button id="textTab" class="tab-button">📝 Text</button>
-            <button id="bulkTab" class="tab-button">📚 Bulk (100+ lines)</button>
+            <button id="bulkTab" class="tab-button">
+              📚 Bulk (100+ lines)
+            </button>
           </div>
 
           <!-- Voice Input Section -->
@@ -73,11 +79,14 @@
                 <button id="bulkTranslateButton" class="translate-button">
                   🔄 Translate All Lines
                 </button>
-                <button id="downloadResults" class="download-button" style="display: none;">
+                <button
+                  id="downloadResults"
+                  class="download-button"
+                  style="display: none">
                   📥 Download Results
                 </button>
               </div>
-              <div id="bulkProgress" class="progress-bar" style="display: none;">
+              <div id="bulkProgress" class="progress-bar" style="display: none">
                 <div class="progress-fill"></div>
                 <span class="progress-text">0%</span>
               </div>
