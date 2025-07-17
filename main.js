@@ -783,7 +783,40 @@ class TeluguTranslatorApp {
     }
 }
 
+// Make the app instance globally available
+let app;
+
 // Initialize the app when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    new TeluguTranslatorApp();
+    app = new TeluguTranslatorApp();
+    window.app = app; // Also attach to window for easier access from Android WebView
 });
+
+/**
+ * Handles speech input from native Android app.
+ * @param {string} text The recognized speech text.
+ */
+function handleNativeSpeech(text) {
+    console.log('handleNativeSpeech called with text:', text);
+    if (window.app) {
+        // Switch to the text input tab to show the incoming text
+        window.app.switchToText();
+
+        // Set the text in the input box
+        if (window.app.teluguInput) {
+            window.app.teluguInput.value = text;
+            // Ensure the translate button is enabled
+            window.app.validateTextInput();
+        }
+
+        // Automatically trigger the translation if text is not empty
+        if (text && text.trim()) {
+            console.log('Triggering translation...');
+            window.app.translateTextInput();
+        } else {
+            console.log('No text provided to translate.');
+        }
+    } else {
+        console.error('Translator app not initialized. Cannot handle native speech.');
+    }
+}
