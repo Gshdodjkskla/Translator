@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/translate-cloud"
+  to = "/.netlify/functions/translate-cloud"
+  status = 200
