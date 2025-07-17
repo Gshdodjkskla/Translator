@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Telugu to English WhatsApp Translator</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>
-      eruda.init();
-    </script>
   </head>
   <body>
     <div class="container">
@@ -211,5 +207,11 @@
     <script src="mic-handler.js"></script>
     <script src="translator.js"></script>
     <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+      if (location.search.includes("debug=true")) {
+        eruda.init();
+      }
+    </script>
   </body>
 </html>
