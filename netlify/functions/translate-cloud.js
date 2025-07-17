@@ -1,11 +1,17 @@
 const { Translate } = require('@google-cloud/translate').v2;
 
-const path = require('path');
+// Check if the environment variable is set
+if (!process.env.GOOGLE_CREDENTIALS) {
+  throw new Error('GOOGLE_CREDENTIALS environment variable not set.');
+}
 
-// Initialize Google Cloud Translation API
+// Parse the credentials from the environment variable
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+
+// Initialize Google Cloud Translation API with credentials object
 const googleCloudTranslate = new Translate({
-    keyFilename: path.join(__dirname, '../../service-account.json'),
-    projectId: 'sahayak-465612'
+    credentials,
+    projectId: credentials.project_id
 });
 
 exports.handler = async function(event, context) {

@@ -39,3 +39,5 @@ Thumbs.db
 *.swp
 *.swo
 *~
+# Google Cloud credentials
+service-account.json
