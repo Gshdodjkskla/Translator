@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Short Input Enhancement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-input {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Noto Sans Telugu', Arial, sans-serif;
+        }
+        .result {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .raw {
+            background-color: #fff3cd;
+            border-left-color: #ffc107;
+        }
+        .enhanced {
+            background-color: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test Short Input Enhancement</h1>
+        <p>Testing how short Telugu inputs are enhanced differently in each stage.</p>
+
+        <div class="test-input">
+            <strong>Telugu Input:</strong><br>
+            రేపటి నుంచి బీటెక్ ఫస్ట్ ఇయర్ సెమిస్టర్
+        </div>
+
+        <button onclick="testTranslation()">Test Translation</button>
+
+        <div id="results" style="display: none;">
+            <div class="result raw">
+                <h3>🔄 Stage 1: Raw Translation</h3>
+                <pre id="rawResult"></pre>
+            </div>
+
+            <div class="result enhanced">
+                <h3>✨ Stage 2: Enhanced Translation</h3>
+                <pre id="enhancedResult"></pre>
+            </div>
+
+            <div class="result" style="background-color: #f8f9fa; border-left-color: #6c757d;">
+                <h3>📊 Analysis</h3>
+                <p id="analysis"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testTranslation() {
+            // Simulate the translation process
+            const teluguInput = "రేపటి నుంచి బీటెక్ ఫస్ట్ ఇయర్ సెమిస్టర్";
+            
+            // Stage 1: Raw Translation (minimal processing)
+            const rawTranslation = "B.Tech first year semester from tomorrow.";
+            
+            // Stage 2: Enhanced Translation (should be significantly different)
+            const enhancedTranslation = `Academic Notice:
+
+B.Tech first year semester examinations are scheduled to commence tomorrow.
+
+All students are requested to be prepared accordingly.
+
+Best regards,
+The Academic Office`;
+
+            // Display results
+            document.getElementById('rawResult').textContent = rawTranslation;
+            document.getElementById('enhancedResult').textContent = enhancedTranslation;
+            
+            // Analysis
+            const rawLength = rawTranslation.length;
+            const enhancedLength = enhancedTranslation.length;
+            const difference = enhancedLength - rawLength;
+            
+            document.getElementById('analysis').innerHTML = `
+                <strong>Length Comparison:</strong><br>
+                • Raw: ${rawLength} characters<br>
+                • Enhanced: ${enhancedLength} characters<br>
+                • Difference: +${difference} characters<br><br>
+                
+                <strong>Key Enhancements:</strong><br>
+                • Added formal structure with "Academic Notice"<br>
+                • Expanded "from tomorrow" → "scheduled to commence tomorrow"<br>
+                • Added context for students<br>
+                • Included professional closing<br>
+                • Made it a complete, formal announcement
+            `;
+            
+            document.getElementById('results').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

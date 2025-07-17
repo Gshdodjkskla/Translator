@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telugu to English WhatsApp Translator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Telugu to English Translator</h1>
+        <p>
+          Speak or type in Telugu, get perfect English with grammar correction
+        </p>
+      </header>
+
+      <main>
+        <!-- Input Methods -->
+        <div class="input-methods">
+          <div class="method-tabs">
+            <button id="voiceTab" class="tab-button active">🎤 Voice</button>
+            <button id="textTab" class="tab-button">📝 Text</button>
+            <button id="bulkTab" class="tab-button">📚 Bulk (100+ lines)</button>
+          </div>
+
+          <!-- Voice Input Section -->
+          <div id="voiceSection" class="input-section active">
+            <div class="mic-section">
+              <div class="mic-button-container">
+                <button
+                  id="startMicButton"
+                  class="mic-control-button start-button">
+                  <span class="mic-icon">🎤</span>
+                  <span class="mic-text">Start</span>
+                </button>
+                <button
+                  id="stopMicButton"
+                  class="mic-control-button stop-button"
+                  disabled>
+                  <span class="mic-icon">⏹️</span>
+                  <span class="mic-text">Stop</span>
+                </button>
+              </div>
+              <div id="status" class="status"></div>
+            </div>
+          </div>
+
+          <!-- Text Input Section -->
+          <div id="textSection" class="input-section">
+            <div class="text-input-section">
+              <textarea
+                id="teluguInput"
+                class="telugu-input"
+                placeholder="Telugu లో టైప్ చేయండి లేదా paste చేయండి..."
+                rows="4"></textarea>
+              <button id="translateButton" class="translate-button">
+                🔄 Translate to English
+              </button>
+            </div>
+          </div>
+
+          <!-- Bulk Translation Section -->
+          <div id="bulkSection" class="input-section">
+            <div class="bulk-input-section">
+              <h3>📚 Bulk Translation (100+ lines)</h3>
+              <textarea
+                id="bulkTeluguInput"
+                class="bulk-input"
+                placeholder="Paste multiple Telugu lines here (one per line)..."
+                rows="10"></textarea>
+              <div class="bulk-controls">
+                <button id="bulkTranslateButton" class="translate-button">
+                  🔄 Translate All Lines
+                </button>
+                <button id="downloadResults" class="download-button" style="display: none;">
+                  📥 Download Results
+                </button>
+              </div>
+              <div id="bulkProgress" class="progress-bar" style="display: none;">
+                <div class="progress-fill"></div>
+                <span class="progress-text">0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section" style="display: none">
+          <div class="text-box">
+            <div class="text-header">
+              <h3>Telugu Text:</h3>
+              <div class="header-buttons">
+                <button id="copyTeluguBtn" class="copy-button">📋 Copy</button>
+                <button id="editTeluguBtn" class="edit-button">✏️ Edit</button>
+              </div>
+            </div>
+            <div id="teluguDisplay" class="text-display telugu-text"></div>
+            <textarea
+              id="teluguTextArea"
+              class="text-area telugu-text"
+              style="display: none"
+              placeholder="Edit Telugu text here..."></textarea>
+            <div
+              class="edit-controls"
+              id="teluguControls"
+              style="display: none">
+              <button id="saveTeluguBtn" class="save-button">Save</button>
+              <button id="cancelTeluguBtn" class="cancel-button">Cancel</button>
+            </div>
+          </div>
+
+          <div class="text-box">
+            <div class="text-header">
+              <h3>Raw Translation:</h3>
+              <div class="header-buttons">
+                <button id="copyRawBtn" class="copy-button">📋 Copy</button>
+                <button id="reTranslateBtn" class="retranslate-button">
+                  🔄 Re-translate
+                </button>
+                <button id="editRawBtn" class="edit-button">✏️ Edit</button>
+              </div>
+            </div>
+            <div id="rawDisplay" class="text-display raw-text"></div>
+            <textarea
+              id="rawTextArea"
+              class="text-area raw-text"
+              style="display: none"
+              placeholder="Edit raw translation here..."></textarea>
+            <div class="edit-controls" id="rawControls" style="display: none">
+              <button id="saveRawBtn" class="save-button">Save</button>
+              <button id="cancelRawBtn" class="cancel-button">Cancel</button>
+            </div>
+          </div>
+
+          <div class="text-box improved-box">
+            <div class="text-header">
+              <h3>✨ Improved English (Grammar Corrected):</h3>
+              <div class="header-buttons">
+                <button id="copyImprovedBtn" class="copy-button">
+                  📋 Copy
+                </button>
+                <button id="editImprovedBtn" class="edit-button">
+                  ✏️ Edit
+                </button>
+              </div>
+            </div>
+            <div id="improvedDisplay" class="text-display improved-text"></div>
+            <textarea
+              id="improvedTextArea"
+              class="text-area improved-text"
+              style="display: none"
+              placeholder="Edit improved text here..."></textarea>
+            <div
+              class="edit-controls"
+              id="improvedControls"
+              style="display: none">
+              <button id="saveImprovedBtn" class="save-button">Save</button>
+              <button id="cancelImprovedBtn" class="cancel-button">
+                Cancel
+              </button>
+            </div>
+          </div>
+
+          <div class="improvement-actions">
+            <button id="improveGrammarBtn" class="improve-button">
+              ✨ Improve Grammar & Style
+            </button>
+            <button id="makeFormalBtn" class="improve-button">
+              👔 Make More Formal
+            </button>
+            <button id="makeSimpleBtn" class="improve-button">
+              📝 Make Simple & Clear
+            </button>
+          </div>
+
+          <div class="actions">
+            <button id="translateAgain" class="action-button secondary">
+              🔄 Try Again
+            </button>
+            <button id="sendWhatsApp" class="action-button primary">
+              📱 Send to WhatsApp
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="errorMessage"
+          class="error-message"
+          style="display: none"></div>
+        <div
+          id="successMessage"
+          class="success-message"
+          style="display: none"></div>
+      </main>
+
+      <footer>
+        <p>AI-powered grammar correction for perfect English</p>
+      </footer>
+    </div>
+
+    <script src="mic-handler.js"></script>
+    <script src="translator.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

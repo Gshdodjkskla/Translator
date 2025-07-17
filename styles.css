@@ -1,0 +1,780 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+header p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+/* Star Button */
+.star-button {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.star-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+}
+
+.star-button.listening {
+    background: linear-gradient(135deg, #ff4444, #ff6666);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Input Methods */
+.input-methods {
+    margin-bottom: 30px;
+}
+
+.method-tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: #666;
+}
+
+.tab-button.active {
+    background: white;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.input-section {
+    display: none;
+}
+
+.input-section.active {
+    display: block;
+}
+
+/* Voice Input */
+.mic-section {
+    text-align: center;
+}
+
+.mic-button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mic-control-button {
+    border: none;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.start-button {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.start-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(40, 167, 69, 0.4);
+}
+
+.stop-button {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+}
+
+.stop-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(220, 53, 69, 0.4);
+}
+
+.mic-control-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.mic-control-button.listening {
+    animation: pulse 1.5s infinite;
+}
+
+.mic-icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.mic-text {
+    font-size: 14px;
+}
+
+.status {
+    font-size: 18px;
+    font-weight: 500;
+    min-height: 25px;
+    margin-top: 15px;
+}
+
+.status.listening {
+    color: #28a745;
+}
+
+.status.processing {
+    color: #f39c12;
+}
+
+/* Text Input */
+.text-input-section {
+    text-align: center;
+}
+
+.telugu-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.telugu-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.translate-button {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.translate-button:hover {
+    background: linear-gradient(135deg, #0056b3, #007bff);
+    transform: translateY(-2px);
+}
+
+.translate-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Results Section */
+.results-section {
+    margin-top: 30px;
+}
+
+.text-box {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.text-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.text-header h3 {
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.copy-button {
+    background: linear-gradient(135deg, #6f42c1, #5a359a);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(111, 66, 193, 0.3);
+}
+
+.copy-button:hover {
+    background: linear-gradient(135deg, #5a359a, #6f42c1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(111, 66, 193, 0.4);
+}
+
+.copy-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(111, 66, 193, 0.3);
+}
+
+.retranslate-button {
+    background: linear-gradient(135deg, #fd7e14, #e8590c);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
+}
+
+.retranslate-button:hover {
+    background: linear-gradient(135deg, #e8590c, #fd7e14);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(253, 126, 20, 0.4);
+}
+
+.retranslate-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(253, 126, 20, 0.3);
+}
+
+.retranslate-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.2);
+}
+
+.edit-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.edit-button:hover {
+    background: #0056b3;
+}
+
+.text-display {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 500;
+    min-height: 50px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    word-wrap: break-word;
+}
+
+.text-area {
+    width: 100%;
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 500;
+    min-height: 100px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #007bff;
+    resize: vertical;
+    font-family: inherit;
+    outline: none;
+}
+
+.text-area:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.telugu-text {
+    color: #2c3e50;
+}
+
+.raw-text {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.improved-text {
+    color: #155724;
+    font-weight: 600;
+}
+
+.improved-box {
+    background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+    border: 2px solid #28a745;
+}
+
+.edit-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.save-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.save-button:hover {
+    background: #218838;
+}
+
+.cancel-button {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cancel-button:hover {
+    background: #5a6268;
+}
+
+.improvement-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.improve-button {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 140px;
+}
+
+.improve-button:hover {
+    background: linear-gradient(135deg, #138496, #17a2b8);
+    transform: translateY(-2px);
+}
+
+.improve-button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.action-button {
+    flex: 1;
+    min-width: 120px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-button.primary {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white;
+}
+
+.action-button.primary:hover {
+    background: linear-gradient(135deg, #128c7e, #25d366);
+    transform: translateY(-2px);
+}
+
+.action-button.secondary {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.action-button.secondary:hover {
+    background: #dee2e6;
+    transform: translateY(-2px);
+}
+
+.error-message {
+    background: #ff6b6b;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.success-message {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Pulse animation for continuous listening */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    margin-top: 30px;
+    color: #999;
+    font-size: 14px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .star-button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    header h1 {
+        font-size: 24px;
+    }
+    
+    header p {
+        font-size: 14px;
+    }
+    
+    .mic-button-container {
+        gap: 15px;
+    }
+    
+    .mic-control-button {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .mic-icon {
+        font-size: 24px;
+    }
+    
+    .mic-text {
+        font-size: 12px;
+    }
+    
+    .tab-button {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+    
+    .telugu-input {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    .translate-button {
+        font-size: 14px;
+        padding: 12px 24px;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .improvement-actions {
+        flex-direction: column;
+    }
+    
+    .improve-button {
+        min-width: auto;
+    }
+    
+    .text-box {
+        padding: 15px;
+    }
+    
+    .text-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .header-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .copy-button, .retranslate-button {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+    
+    .text-display, .text-area {
+        font-size: 16px;
+    }
+    
+    .edit-controls {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .mic-button-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .mic-control-button {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .method-tabs {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .tab-button {
+        border-radius: 8px;
+    }
+    
+    .header-buttons {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 4px;
+    }
+    
+    .copy-button, .retranslate-button, .edit-button {
+        font-size: 10px;
+        padding: 5px 8px;
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .mic-control-button {
+        transition: none;
+    }
+    
+    .mic-control-button.listening {
+        animation: none;
+    }
+    
+    .star-button.listening {
+        animation: none;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .mic-control-button {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .edit-button, .save-button, .cancel-button {
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+    
+    .copy-button, .retranslate-button {
+        padding: 10px 14px;
+        font-size: 14px;
+        min-height: 44px;
+    }
+    
+    .improve-button {
+        padding: 16px 20px;
+        font-size: 16px;
+    }
+    
+    .action-button {
+        padding: 18px 24px;
+        font-size: 18px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .mic-button-container {
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .mic-control-button {
+        width: 70px;
+        height: 70px;
+    }
+}

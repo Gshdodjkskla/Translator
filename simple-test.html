@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Test - Raw vs Enhanced</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-case {
+            margin-bottom: 40px;
+            padding: 20px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+        }
+        .input-text {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+            margin-bottom: 20px;
+            font-family: 'Noto Sans Telugu', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .stage {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .stage-1 {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+        .stage-2 {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+        }
+        .stage h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .comparison {
+            background-color: #e2e3e5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Translation Comparison: Raw vs Enhanced</h1>
+        
+        <div class="test-case">
+            <h2>Test Example: College Examination Notice</h2>
+            
+            <div class="input-text">
+                <strong>Telugu Input:</strong><br>
+                రేపటి నుండి మా కళాశాలలో వార్షిక పరీక్షలు ప్రారంభం అవుతున్నాయి. అన్ని విభాగాల విద్యార్థులు సకాలంలో హాజరు కావాలి. పరీక్షలకు సంబంధించిన అన్ని నియమాలను గౌరవించాలి. ఎవరు కూడా ఆందోళన చెందకూడదు. ప్రశ్నపత్రాలు సులభంగా ఉండేలా ఏర్పాట్లు చేశాం.
+            </div>
+            
+            <button onclick="showTranslations()">Show Translation Comparison</button>
+            
+            <div id="translations" class="hidden">
+                <div class="stage stage-1">
+                    <h3>🔄 Stage 1: Raw Translation (Basic & Literal)</h3>
+                    <p>From tomorrow annual examinations are starting in my college. All departments students should attend on time. All rules related to examinations should be respected. No one should worry. We made arrangements to make question papers easy.</p>
+                </div>
+                
+                <div class="stage stage-2">
+                    <h3>✨ Stage 2: Enhanced Translation (Professional & Polished)</h3>
+                    <p>Dear Students,<br><br>
+                    The annual examinations are commencing at our college from tomorrow. All students from every department are required to attend punctually. All regulations pertaining to the examinations must be respected. There is no cause for concern. We have made comprehensive arrangements to ensure the question papers are accessible.<br><br>
+                    We appreciate your attention to this matter.<br><br>
+                    Best regards,<br>
+                    The Administration</p>
+                </div>
+                
+                <div class="comparison">
+                    <h4>📊 Key Differences:</h4>
+                    <ul>
+                        <li><strong>Raw:</strong> Basic, literal translation with minimal grammar fixes</li>
+                        <li><strong>Enhanced:</strong> Professional language, formal greetings, proper structure</li>
+                        <li><strong>Raw:</strong> "From tomorrow" → <strong>Enhanced:</strong> "commencing from tomorrow"</li>
+                        <li><strong>Raw:</strong> "should attend" → <strong>Enhanced:</strong> "are required to attend"</li>
+                        <li><strong>Raw:</strong> "No one should worry" → <strong>Enhanced:</strong> "There is no cause for concern"</li>
+                        <li><strong>Raw:</strong> No greeting/closing → <strong>Enhanced:</strong> "Dear Students" + formal closing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-case">
+            <h2>Another Example: Personal Message</h2>
+            
+            <div class="input-text">
+                <strong>Telugu Input:</strong><br>
+                నాకు ఆరోగ్యం బాగోలేదు కాబట్టి రేపు కాలేజీకి రాలేను. డాక్టర్ గారిని కలిసి వచ్చేస్తాను.
+            </div>
+            
+            <button onclick="showPersonalTranslations()">Show Translation Comparison</button>
+            
+            <div id="personalTranslations" class="hidden">
+                <div class="stage stage-1">
+                    <h3>🔄 Stage 1: Raw Translation (Basic & Literal)</h3>
+                    <p>My health is not good so I cannot come to college tomorrow. I will meet doctor and come.</p>
+                </div>
+                
+                <div class="stage stage-2">
+                    <h3>✨ Stage 2: Enhanced Translation (Professional & Polished)</h3>
+                    <p>I am not feeling well, therefore I will not be able to attend college tomorrow. I will consult with the doctor and return thereafter.</p>
+                </div>
+                
+                <div class="comparison">
+                    <h4>📊 Key Differences:</h4>
+                    <ul>
+                        <li><strong>Raw:</strong> "My health is not good" → <strong>Enhanced:</strong> "I am not feeling well"</li>
+                        <li><strong>Raw:</strong> "cannot come" → <strong>Enhanced:</strong> "will not be able to attend"</li>
+                        <li><strong>Raw:</strong> "meet doctor" → <strong>Enhanced:</strong> "consult with the doctor"</li>
+                        <li><strong>Raw:</strong> Simple connectors → <strong>Enhanced:</strong> "therefore", "thereafter"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTranslations() {
+            document.getElementById('translations').classList.remove('hidden');
+        }
+        
+        function showPersonalTranslations() {
+            document.getElementById('personalTranslations').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

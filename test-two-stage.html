@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Stage Translation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .input-section {
+            margin-bottom: 30px;
+        }
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result-section {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            display: none;
+        }
+        .stage {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .stage-1 {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+        }
+        .stage-2 {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+        }
+        .stage h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .stage p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        .original {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6c757d;
+            margin-bottom: 25px;
+        }
+        .loading {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Two-Stage Translation System Test</h1>
+        <p>Test the difference between <strong>Raw Translation</strong> (Stage 1) and <strong>Professional Enhancement</strong> (Stage 2)</p>
+        
+        <div class="input-section">
+            <h3>Telugu Input:</h3>
+            <textarea id="teluguInput" rows="4" placeholder="రేపటి నుండి మా కళాశాలలో వార్షిక పరీక్షలు ప్రారంభం అవుతున్నాయి. అన్ని విభాగాల విద్యార్థులు సకాలంలో హాజరు కావాలి.">రేపటి నుండి మా కళాశాలలో వార్షిక పరీక్షలు ప్రారంభం అవుతున్నాయి. అన్ని విభాగాల విద్యార్థులు సకాలంలో హాజరు కావాలి. పరీక్షలకు సంబంధించిన అన్ని నియమాలను గౌరవించాలి. ఎవరు కూడా ఆందోళన చెందకూడదు. ప్రశ్నపత్రాలు సులభంగా ఉండేలా ఏర్పాట్లు చేశాం.</textarea>
+            <button onclick="translateText()" id="translateBtn">🔄 Translate</button>
+        </div>
+        
+        <div id="results" class="result-section">
+            <div class="original">
+                <h3>📝 Original Telugu:</h3>
+                <p id="originalText"></p>
+            </div>
+            
+            <div class="stage stage-1">
+                <h3>🔄 Stage 1: Raw Translation (Complete & Meaningful)</h3>
+                <p id="rawTranslation"></p>
+            </div>
+            
+            <div class="stage stage-2">
+                <h3>✨ Stage 2: Professional Enhancement (Polished & Professional)</h3>
+                <p id="enhancedTranslation"></p>
+            </div>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+            <p>🔄 Processing translation...</p>
+        </div>
+    </div>
+
+    <script src="translator.js"></script>
+    <script>
+        const translator = new PerfectTranslator();
+        
+        async function translateText() {
+            const input = document.getElementById('teluguInput').value.trim();
+            if (!input) {
+                alert('Please enter Telugu text');
+                return;
+            }
+            
+            const translateBtn = document.getElementById('translateBtn');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            
+            // Show loading
+            translateBtn.disabled = true;
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            
+            try {
+                // Get translation result
+                const result = await translator.translateText(input);
+                
+                // Display results
+                document.getElementById('originalText').textContent = input;
+                
+                if (result.raw && result.enhanced) {
+                    // New two-stage system
+                    document.getElementById('rawTranslation').textContent = result.raw;
+                    document.getElementById('enhancedTranslation').textContent = result.enhanced;
+                } else {
+                    // Fallback to legacy system
+                    const rawResult = await translator.getRawTranslation(input);
+                    const enhancedResult = translator.enhanceTranslation(rawResult);
+                    
+                    document.getElementById('rawTranslation').textContent = rawResult;
+                    document.getElementById('enhancedTranslation').textContent = enhancedResult;
+                }
+                
+                results.style.display = 'block';
+                
+            } catch (error) {
+                alert('Translation failed: ' + error.message);
+                console.error('Translation error:', error);
+            } finally {
+                translateBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        }
+        
+        // Test button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.getElementById('teluguInput');
+            const button = document.getElementById('translateBtn');
+            
+            // Enable translate button when there's text
+            textarea.addEventListener('input', function() {
+                button.disabled = !textarea.value.trim();
+            });
+            
+            // Allow Enter to translate
+            textarea.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    translateText();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
