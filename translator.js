@@ -221,7 +221,8 @@ class PerfectTranslator {
             'need to': 'are required to',
             'have to': 'are obligated to',
             'want to': 'intend to',
-            'going to': 'will',
+            'are going to': 'will',
+            'is going to': 'will',
             'start': 'commence',
             'begin': 'commence',
             'end': 'conclude',
@@ -276,10 +277,11 @@ class PerfectTranslator {
             enhanced = enhanced.replace(/\battend college tomorrow without fail\b/gi, 'mandatorily attend college tomorrow');
             enhanced = enhanced.replace(/\bmandatory for everyone\b/gi, 'mandatory for all concerned students');
             
-            // Specific enhancements for semester/exam context
+            // Specific enhancements for semester/exam context - FIXED ORDER
             enhanced = enhanced.replace(/\bb\.?tech\s+first\s+year\s+semester\s+examinations\s+will\s+commence\s+from\s+tomorrow/gi, 
                 'B.Tech first year semester examinations are scheduled to commence from tomorrow');
-            enhanced = enhanced.replace(/\bfrom\s+tomorrow\b/gi, 'commencing tomorrow');
+            enhanced = enhanced.replace(/\bgoing\s+to\s+start\s+from\s+tomorrow/gi, 'scheduled to commence tomorrow');
+            enhanced = enhanced.replace(/\bwill\s+start\s+from\s+tomorrow/gi, 'are scheduled to commence tomorrow');
             enhanced = enhanced.replace(/\bwill\s+commence/gi, 'are scheduled to commence');
             enhanced = enhanced.replace(/\bwill\s+start/gi, 'are scheduled to begin');
         }
@@ -349,7 +351,6 @@ class PerfectTranslator {
         polished = polished.replace(/\ball the facilities\b/gi, 'all necessary facilities');
         polished = polished.replace(/\bimmediately after\b/gi, 'promptly following');
         polished = polished.replace(/\bshould not forget\b/gi, 'must remember to bring');
-        polished = polished.replace(/\bfrom tomorrow\b/gi, 'commencing tomorrow');
         polished = polished.replace(/\bwill start\b/gi, 'will commence');
         polished = polished.replace(/\bwill begin\b/gi, 'will commence');
         
