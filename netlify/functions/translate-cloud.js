@@ -1,8 +1,10 @@
 const { Translate } = require('@google-cloud/translate').v2;
 
+const path = require('path');
+
 // Initialize Google Cloud Translation API
 const googleCloudTranslate = new Translate({
-    keyFilename: './service-account.json',
+    keyFilename: path.join(__dirname, '../../service-account.json'),
     projectId: 'sahayak-465612'
 });
 
